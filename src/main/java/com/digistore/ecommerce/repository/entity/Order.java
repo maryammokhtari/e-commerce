@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,6 +34,6 @@ public class Order {
             joinColumns = @JoinColumn(name= "order_id"),
             inverseJoinColumns = @JoinColumn(name= "product_id")
     )
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
 }
