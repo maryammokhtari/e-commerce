@@ -24,28 +24,32 @@ public class CategoryService {
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
-    public Category findById(Long id){
-        Optional<Category> category=categoryRepository.findById(id);
-        if(category.isPresent()){
+
+    public Category findById(Long id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isPresent()) {
             return category.get();
         }
         throw new ResourceNotFoundException(CATEGORY_IS_NOT_EXIST);
     }
-    public Category create(CategoryRequest categoryRequest){
-        Category category= categoryMapper.categoryRequestToCategory(categoryRequest);
+
+    public Category create(CategoryRequest categoryRequest) {
+        Category category = categoryMapper.categoryRequestToCategory(categoryRequest);
         return categoryRepository.save(category);
     }
-    public Category update(Long id,CategoryRequest categoryRequest){
-        if (!categoryRepository.existsById(id)){
+
+    public Category update(Long id, CategoryRequest categoryRequest) {
+        if (!categoryRepository.existsById(id)) {
             throw new ResourceNotFoundException(CATEGORY_IS_NOT_EXIST);
         }
-        Category category=categoryMapper.categoryRequestToCategory(categoryRequest);
+        Category category = categoryMapper.categoryRequestToCategory(categoryRequest);
         return categoryRepository.save(category);
     }
-    public void deleteById(Long id){
-        if (!categoryRepository.existsById(id)){
+
+    public void deleteById(Long id) {
+        if (!categoryRepository.existsById(id)) {
             throw new ResourceNotFoundException(CATEGORY_IS_NOT_EXIST);
         }
-         categoryRepository.deleteById(id);
+        categoryRepository.deleteById(id);
     }
 }

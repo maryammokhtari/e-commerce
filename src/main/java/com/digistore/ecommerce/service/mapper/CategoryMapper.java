@@ -3,13 +3,11 @@ package com.digistore.ecommerce.service.mapper;
 import com.digistore.ecommerce.repository.entity.Category;
 import com.digistore.ecommerce.service.dto.CategoryRequest;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
-
-@Mapper(componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CategoryMapper {
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "products", ignore = true)
     Category categoryRequestToCategory(CategoryRequest categoryRequest);
 
 }

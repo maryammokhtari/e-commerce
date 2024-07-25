@@ -20,29 +20,33 @@ public class ProductService {
     private final ProductMapper productMapper;
     private final ProductRepository productRepository;
 
-    public List<Product> findAll(){
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
-    public Product findById(Long id){
-        Optional<Product>product =productRepository.findById(id);
-        if (product.isPresent()){
+
+    public Product findById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
             return product.get();
         }
         throw new ResourceNotFoundException(PRODUCT_IS_NOT_EXIST);
     }
-    public Product create(ProductRequest productRequest){
-        Product product= productMapper.productRequestToProduct(productRequest);
+
+    public Product create(ProductRequest productRequest) {
+        Product product = productMapper.productRequestToProduct(productRequest);
         return productRepository.save(product);
     }
-    public Product update(Long id,ProductRequest productRequest){
-    if (!productRepository.existsById(id)){
-        throw new ResourceNotFoundException(PRODUCT_IS_NOT_EXIST);
+
+    public Product update(Long id, ProductRequest productRequest) {
+        if (!productRepository.existsById(id)) {
+            throw new ResourceNotFoundException(PRODUCT_IS_NOT_EXIST);
+        }
+        Product product = productMapper.productRequestToProduct(productRequest);
+        return productRepository.save(product);
     }
-    Product product=productMapper.productRequestToProduct(productRequest);
-    return productRepository.save(product);
-    }
-    public void deleteById(Long id){
-        if (!productRepository.existsById(id)){
+
+    public void deleteById(Long id) {
+        if (!productRepository.existsById(id)) {
             throw new ResourceNotFoundException(PRODUCT_IS_NOT_EXIST);
         }
         productRepository.deleteById(id);
