@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ecommerce
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
