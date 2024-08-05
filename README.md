@@ -9,7 +9,7 @@ This Java-based e-commerce Program is designed to manage online shop's operation
 
 Category Controller: Manage category information, including getting, adding, updating, and deleting categories records.
 
-User Controller: Manage user details, including getting, creating, updating, and deleting users.
+User Controller: Manage userInfo details, including getting, creating, updating, and deleting users.
 
 Order Controller: Manage order data, including getting, creating, updating orders information, and managing enrollments.
 

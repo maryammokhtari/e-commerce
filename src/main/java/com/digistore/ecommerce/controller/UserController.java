@@ -1,6 +1,6 @@
 package com.digistore.ecommerce.controller;
 
-import com.digistore.ecommerce.repository.entity.User;
+import com.digistore.ecommerce.repository.entity.UserInfo;
 import com.digistore.ecommerce.service.UserService;
 import com.digistore.ecommerce.service.dto.UserRequest;
 import jakarta.validation.Valid;
@@ -16,15 +16,15 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<UserInfo>> findAll(){
         return ResponseEntity.ok(userService.findAll());
     }
     @GetMapping({"/id"})
-    public ResponseEntity<User> findById(@PathVariable Long id){
+    public ResponseEntity<UserInfo> findById(@PathVariable Long id){
         return ResponseEntity.ok(userService.findById(id));
     }
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody @Valid UserRequest userRequest){
+    public ResponseEntity<UserInfo> create(@RequestBody @Valid UserRequest userRequest){
         return ResponseEntity.ok(userService.create(userRequest));
     }
     @DeleteMapping({"/id"})
@@ -34,7 +34,7 @@ public class UserController {
     }
     @PutMapping({"/id"})
     public ResponseEntity update(@PathVariable Long id , @RequestBody @Valid UserRequest userRequest){
-        User updatedUser= userService.update(id , userRequest);
-        return ResponseEntity.ok(updatedUser);
+        UserInfo updatedUserInfo = userService.update(id , userRequest);
+        return ResponseEntity.ok(updatedUserInfo);
     }
 }

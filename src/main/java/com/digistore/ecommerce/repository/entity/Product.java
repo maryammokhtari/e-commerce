@@ -33,5 +33,5 @@ public class Product {
     private Category category;
 
     @ManyToMany(mappedBy = "products")
-    private Set<Order> orders = new HashSet<>();
+    private Set<Orders> orders = new HashSet<>();
 }

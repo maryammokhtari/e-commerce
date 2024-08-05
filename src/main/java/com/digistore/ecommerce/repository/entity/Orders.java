@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,8 +25,8 @@ public class Order {
     @Min(value = 0)
     private BigDecimal totalAmount;
     @ManyToOne
-    @JoinColumn(name= "user_id")
-    private User user;
+    @JoinColumn(name= "user_info_id")
+    private UserInfo userInfo;
 
     @ManyToMany
     @JoinTable(

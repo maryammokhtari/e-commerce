@@ -2,7 +2,7 @@ package com.digistore.ecommerce.service;
 
 import com.digistore.ecommerce.exception.ResourceNotFoundException;
 import com.digistore.ecommerce.repository.UserRepository;
-import com.digistore.ecommerce.repository.entity.User;
+import com.digistore.ecommerce.repository.entity.UserInfo;
 import com.digistore.ecommerce.service.dto.UserRequest;
 import com.digistore.ecommerce.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,29 +21,29 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public List<User> findAll() {
+    public List<UserInfo> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public UserInfo findById(Long id) {
+        Optional<UserInfo> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get();
         }
         throw new ResourceNotFoundException(USER_IS_NOT_FOUND);
     }
 
-    public User create(UserRequest userRequest) {
-        User user = userMapper.userRequestToUser(userRequest);
-        return userRepository.save(user);
+    public UserInfo create(UserRequest userRequest) {
+        UserInfo userInfo = userMapper.userRequestToUser(userRequest);
+        return userRepository.save(userInfo);
     }
 
-    public User update(Long id, UserRequest userRequest) {
+    public UserInfo update(Long id, UserRequest userRequest) {
         if (!userRepository.existsById(id)) {
             throw new ResourceNotFoundException(USER_IS_NOT_FOUND);
         }
-        User user = userMapper.userRequestToUser(userRequest);
-        return userRepository.save(user);
+        UserInfo userInfo = userMapper.userRequestToUser(userRequest);
+        return userRepository.save(userInfo);
     }
 
     public void deleteById(Long id) {

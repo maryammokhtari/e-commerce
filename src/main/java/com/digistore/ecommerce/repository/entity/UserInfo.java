@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,8 +30,8 @@ public class User {
     private String email;
     @NotBlank
     private String role;
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.PERSIST)
-    private Set<Order> orders;
+    @OneToMany(mappedBy = "userInfo" , cascade = CascadeType.PERSIST)
+    private Set<Orders> orders;
 
 }
 
