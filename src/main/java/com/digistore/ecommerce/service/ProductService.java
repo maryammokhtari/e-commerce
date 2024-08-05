@@ -41,7 +41,7 @@ public class ProductService {
         if (!productRepository.existsById(id)) {
             throw new ResourceNotFoundException(PRODUCT_IS_NOT_EXIST);
         }
-        Product product = productMapper.productRequestToProduct(productRequest);
+        Product product = productMapper.productUpdateRequestToProduct(productRequest, id);
         return productRepository.save(product);
     }
 
