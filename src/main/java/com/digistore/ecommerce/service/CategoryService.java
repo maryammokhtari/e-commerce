@@ -42,7 +42,7 @@ public class CategoryService {
         if (!categoryRepository.existsById(id)) {
             throw new ResourceNotFoundException(CATEGORY_IS_NOT_EXIST);
         }
-        Category category = categoryMapper.categoryRequestToCategory(categoryRequest);
+        Category category = categoryMapper.categoryUpdateRequestToCategory(categoryRequest,id);
         return categoryRepository.save(category);
     }
 

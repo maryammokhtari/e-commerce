@@ -79,7 +79,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    void getAllProduct() {
+    void findAllProduct() {
         List<Product> productList = new ArrayList<>();
         Product product1 = new Product(2l, "apple", "red fruit", null, 1.5, null, null);
         Product product2 = new Product(3l, "yoghurt", "greek model", null, 3.5, null, null);
@@ -93,10 +93,17 @@ public class ProductServiceTest {
     }
 
     @Test
-    void getById() {
+    void findByIdProduct() {
         when(productRepository.findById(product.getId())).thenReturn(Optional.of(product));
         Product result = productService.findById(product.getId());
         assertEquals(result.getName(), product.getName());
         verify(productRepository).findById(product.getId());
+    }
+    @Test
+    void findByIdProduct_ThrowsException(){
+        when(productRepository.findById(product.getId())).thenReturn(Optional.empty());
+        assertThrows(ResourceNotFoundException.class,()->{
+            productService.findById(product.getId());
+        });
     }
 }

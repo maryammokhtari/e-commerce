@@ -42,7 +42,7 @@ public class UserService {
         if (!userRepository.existsById(id)) {
             throw new ResourceNotFoundException(USER_IS_NOT_FOUND);
         }
-        UserInfo userInfo = userMapper.userRequestToUser(userRequest);
+        UserInfo userInfo = userMapper.userUpdateRequestToUser(userRequest,id);
         return userRepository.save(userInfo);
     }
 
